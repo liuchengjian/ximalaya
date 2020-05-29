@@ -1,5 +1,8 @@
+// @ts-ignore
 import React from 'react';
+// @ts-ignore
 import {Alert, StyleSheet, View, Text, FlatList, Image} from "react-native";
+// @ts-ignore
 import axios from "axios";
 import {Api} from "../common/Const";
 import Touchable from "./Touchable";
@@ -10,7 +13,11 @@ import Iconhuanyipi from "../../src/assets/iconfont/Iconhuanyipi";
 /**
  * 猜你喜欢
  */
-export default class Guess extends React.Component {
+interface IProps {
+    goAlbum: (item: any) => void;
+}
+
+export default class Guess extends React.Component<IProps> {
     state = {
         data: [],
     };
@@ -42,8 +49,9 @@ export default class Guess extends React.Component {
 
     // @ts-ignore
     renderItem = ({item}) => {
+        const {goAlbum} = this.props;
         return (<Touchable style={styles.item} onPress={() => {
-            Alert.alert("11111");
+            goAlbum(item);
         }}>
             <Image source={{uri: item.image}} style={styles.image}/>
             <Text numberOfLines={2}>

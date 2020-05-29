@@ -96,14 +96,16 @@ export class Home extends React.Component<IProps> {
         this.loadChannelData(true);
     }
 
-    onPress = (data: any) => {
-        console.log(data)
+    goAlbum = (data: any) => {
+        const {navigation} = this.props;
+        // @ts-ignore
+        navigation.navigate("Album",{data})
     };
 
     // @ts-ignore
     renderItem = ({item}) => {
         return <ChannelItem data={item}
-                            onPress={this.onPress}
+                            onPress={this.goAlbum}
         />
     };
 
@@ -111,7 +113,7 @@ export class Home extends React.Component<IProps> {
         return (<View>
                 <Carousels/>
                 <View style={styles.background}>
-                    <Guess/>
+                    <Guess goAlbum={this.goAlbum}/>
                 </View>
             </View>
         )
